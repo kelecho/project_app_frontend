@@ -269,6 +269,12 @@ const ProyectosProvider = ({children}) =>{
     }
 }
 
+const cerrarSesionProyectos = () => {
+  setProyectos([])
+  setProyecto({})
+  setAlerta({})
+}
+
   return(
     <ProyectosContext.Provider
       value={{
@@ -287,7 +293,8 @@ const ProyectosProvider = ({children}) =>{
         tarea,
         modalEliminarTarea,
         handleModalEliminarTarea,
-        eliminarTarea
+        eliminarTarea,
+        cerrarSesionProyectos
       }}
     >{children}
   </ProyectosContext.Provider>)
