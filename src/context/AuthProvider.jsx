@@ -11,29 +11,29 @@ const AuthProvider = ({children}) =>{
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const autenticarUsuario = async () => {
-      const token = localStorage.getItem('token')
-      if (!token) {
-        setCargando(false)
-        return
-      }
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        }
-      }
-      try {
-        const { data } = await clienteAxios('/usuarios/perfil', config)
-        setAuth(data)
-        //navigate('/proyectos')
-      } catch (error) {
-        setAuth({})
-      }
+  const autenticarUsuario = async () => {
+    const token = localStorage.getItem('token')
+    if (!token) {
       setCargando(false)
+      return
     }
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    }
+    try {
+      const { data } = await clienteAxios('/usuarios/perfil', config)
+      setAuth(data)
+      //navigate('/proyectos')
+    } catch (error) {
+      setAuth({})
+    }
+    setCargando(false)
+  }
 
+  useEffect(() => {
     autenticarUsuario()
   }, [])
 
@@ -47,7 +47,8 @@ const AuthProvider = ({children}) =>{
         auth,
         setAuth,
         cargando,
-        cerrarSesionAuth
+        cerrarSesionAuth,
+        autenticarUsuario
       }}
     >
       {children}

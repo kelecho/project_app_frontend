@@ -3,21 +3,22 @@ import { useParams } from "react-router-dom"
 import { useEffect  } from "react"
 import FormularioProyecto from '../components/FormularioProyecto'
 const EditarProyecto = () => {
-  const { proyecto, obtenerProyecto, cargando, eliminarProyecto } = useProyectos()
-  const { nombre, _id } = proyecto
+  const params = useParams();
+    const { obtenerProyecto, proyecto, cargando, eliminarProyecto } = useProyectos()
+  
+    useEffect( () => {
+      obtenerProyecto(params.id)
+    }, [])
 
-  useEffect(() => {
-    obtenerProyecto(_id)
-  }, [])
+    const handleClick = () => {
+        if(confirm('¿Deseas eliminar este proyecto?')) {
+            eliminarProyecto(params.id)
+        } 
+    }
+  
+    const { nombre } = proyecto
 
-  const handleClick = () => {
-    if(confirm("Deseas eliminar este proyecto?"))
-      eliminarProyecto(proyecto._id)
-    else
-    console.log("no");
-  }
-
-  if (cargando) return 'cargando.....'
+    if(cargando) return 'Cargando...'
 
 
 
