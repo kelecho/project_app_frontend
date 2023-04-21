@@ -14,6 +14,8 @@ import { AuthProvider } from "./context/AuthProvider";
 import { ProyectosProvider } from "./context/ProyectosProvider";
 import Perfil from "./pages/Perfil";
 import EditarPerfil from "./pages/EditarPerfil";
+import PagoExitoso from './pages/PagoExitoso'
+import ServicioPremium from './pages/ServicioPremium'
 
 function App() {
   return (
@@ -34,6 +36,8 @@ function App() {
 
             <Route path="/proyectos" element={<RutaProtegida />}>
               <Route index element={<Proyectos />} />
+              <Route path="pago-exitoso" element={<PagoExitoso />} />
+              <Route path="servicio-premium" element={<ServicioPremium />} />
               <Route path="crear-proyecto" element={<NuevoProyecto />} />
               <Route path=":id" element={<Proyecto />} />
               <Route path="editar/:id" element={<EditarProyecto />} />

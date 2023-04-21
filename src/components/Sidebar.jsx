@@ -14,6 +14,10 @@ const Sidebar = () => {
             to="crear-proyecto"
             className='bg-sky-600 w-full p-3 text-white uppercase font-bold block mt-5 text-center rounded-lg'
         >Nuevo Proyecto</Link>
+        <Link
+            to="servicio-premium"
+            className='bg-sky-600 w-full p-3 text-white uppercase font-bold block mt-5 text-center rounded-lg'
+        >Premium</Link>
     </aside>
     :
     <aside></aside>
