@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useParams, Link } from "react-router-dom"
 import useProyectos from "../hooks/useProyectos"
 import ModalFormularioTarea from "../components/ModalFormularioTarea"
@@ -7,12 +7,10 @@ import Tarea from "../components/Tarea"
 import Alerta from "../components/Alerta"
 
 const Proyecto = () => {
+  const { obtenerProyecto, proyecto, cargando, handleModalTarea, alerta } = useProyectos()
+ 
   const params = useParams()
   const {id} = params
-  const { obtenerProyecto, proyecto, cargando, handleModalTarea, alerta } = useProyectos()
-  
-
-  const { nombre } = proyecto
 
   useEffect(() => {
     obtenerProyecto(id)
@@ -20,11 +18,10 @@ const Proyecto = () => {
   if (cargando) return 'cargando.....'
 
   const { msg } = alerta
-
   return (
     <>
         <div className="flex justify-between">
-        <h1 className="font-black text-4xl">{nombre}</h1>
+        <h1 className="font-black text-4xl">{proyecto.nombre}</h1>
 
         <div className='flex items-center gap-2 text-gray-400 hover:text-black'>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -54,18 +51,18 @@ const Proyecto = () => {
 
       <div className="bg-white shadow mt-10 rounded-lg">
         { proyecto.tareas?.length ? 
-         proyecto.tareas?.map( tarea => (
+          proyecto.tareas.map( tarea => (
           <Tarea 
             key={tarea._id}
             tarea={tarea}
+            proyectoId={id}
           />
          )) : 
           <p className="text-center my-5 p-10">No hay tareas en este proyecto</p>
         }
       </div>
-
       <ModalFormularioTarea />
-      <ModalEliminarTarea />
+  
     </>
     
   )

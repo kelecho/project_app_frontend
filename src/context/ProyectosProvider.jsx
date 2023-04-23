@@ -21,25 +21,26 @@ const ProyectosProvider = ({children}) => {
     const navigate = useNavigate();
     const { auth } = useAuth()
 
-    useEffect(() => {
-        const obtenerProyectos = async () => {
-            try {
-                const token = localStorage.getItem('token')
-                if(!token) return
-                
-    
-                const config = {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`
-                    }
+    const obtenerProyectos = async () => {
+        try {
+            const token = localStorage.getItem('token')
+            if(!token) return
+            
+
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
                 }
-                const { data } = await clienteAxios('/proyectos', config)
-                setProyectos(data)
-            } catch (error) {
-                console.log(error)
             }
+            const { data } = await clienteAxios('/proyectos', config)
+            setProyectos(data)
+        } catch (error) {
+            console.log(error)
         }
+    }
+
+    useEffect(() => {
         obtenerProyectos()
     }, [auth])
 
@@ -211,7 +212,7 @@ const ProyectosProvider = ({children}) => {
 
             setAlerta({})
             setModalFormularioTarea(false)
-
+            obtenerProyecto(tarea.proyecto)
             // SOCKET IO
             socket.emit('nueva tarea', data)
         } catch (error) {
@@ -253,7 +254,7 @@ const ProyectosProvider = ({children}) => {
         setModalEliminarTarea(!modalEliminarTarea)
     }
 
-    const eliminarTarea = async () => {
+    const eliminarTarea = async (tareaId,proyectoId) => {
     
         try {
             const token = localStorage.getItem('token')
@@ -266,14 +267,14 @@ const ProyectosProvider = ({children}) => {
                 }
             }
 
-            const { data } = await clienteAxios.delete(`/tareas/${tarea._id}`, config)
+            const { data } = await clienteAxios.delete(`/tareas/${tareaId}`, config)
             setAlerta({
                 msg: data.msg,
                 error: false
             })
 
             setModalEliminarTarea(false)
-            
+            obtenerProyecto(proyectoId)
             // SOCKET
             socket.emit('eliminar tarea', tarea)
 

@@ -1,6 +1,7 @@
 import { formatearFecha } from "../helpers/formatearFecha"
 import useProyectos from "../hooks/useProyectos"
-const Tarea = ({tarea}) => {
+import ModalEliminarTarea from "./ModalEliminarTarea"
+const Tarea = ({tarea,proyectoId}) => {
 
   const { handleModalEditarTarea, handleModalEliminarTarea } = useProyectos()
 
@@ -31,10 +32,13 @@ const Tarea = ({tarea}) => {
           
         <button
           className="bg-red-600 px-4 py-3 text-white uppercase font-bold text-sm rounded-lg"
-          onClick={handleModalEliminarTarea}
+          onClick={()=>handleModalEliminarTarea(tarea)}
         >Eliminar</button>
       </div>
+      
+      <ModalEliminarTarea proyectoId={proyectoId} tareaId={_id}/>
     </div>
+    
   )
 }
 
