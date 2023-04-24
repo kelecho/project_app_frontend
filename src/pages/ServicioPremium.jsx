@@ -6,7 +6,7 @@ const ServicioPremium = () => {
         <>
             <h1 className="text-4xl font-black">Servicio Premium</h1>
     
-            <div className="mt-10 flex justify-center">
+            <div className="mt-5 flex justify-center">
                 <FormularioPremium />
             </div>
         </>
