@@ -9,7 +9,7 @@ import Navbar from '../components/Navbar';
 
 const Proyecto = () => {
   const { obtenerProyecto, proyecto, cargando, handleModalTarea, alerta } = useProyectos()
- 
+  
   const params = useParams()
   const {id} = params
 
@@ -65,7 +65,7 @@ const Proyecto = () => {
         Nueva Tarea
       </button>
         <div className='flex items-center gap-4'>
-          <img src={icono ? icono : ''} alt='icono' className='flex w-10 h-full rounded-md bg-center bg-no-repeat' />
+          <img src={proyecto.icono ? proyecto.icono : ''} alt='icono' className='flex w-10 h-full rounded-md bg-center bg-no-repeat' />
           <h1 className="font-black text-4xl">{nombre}</h1>
         </div>
         <div className="gap-2">
