@@ -9,7 +9,7 @@ const Sidebar = () => {
   const { proyectos } = useProyectos()
   return (
     path === 'proyectos' ? 
-   <aside className='md:w-80 lg:w-96 px-5 py-6 bg-white mt-20' >
+   <aside className='md:w-80 lg:w-96 px-5 py-6 bg-white' >
         <p className='text-5xl font-bold my-5'>¡Hola { auth.nombre }!</p>
         <input 
           type="search" 
