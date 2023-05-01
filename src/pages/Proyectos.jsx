@@ -1,4 +1,5 @@
 import Alerta from "../components/Alerta";
+import ModalFormularioTarea from "../components/ModalFormularioTarea";
 import PreviewProyecto from "../components/PreviewProyecto";
 import useProyectos from "../hooks/useProyectos"
 
