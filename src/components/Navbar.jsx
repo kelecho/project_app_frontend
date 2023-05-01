@@ -7,7 +7,7 @@ function Navbar({ setFiltro }) {
     <nav className="flex justify-center bg-grey-600 my-5">
       <ul className="flex p-0 gap-2 justify-stretch">
         <li
-          className={`text-center w-80 text-white p-2 cursor-pointer rounded-full px-10 ${
+          className={`text-center w-50 text-white p-2 cursor-pointer rounded-full px-10 ${
             filtroActual === null ? "bg-sky-400" : "bg-gray-400 hover:bg-sky-400"
           }`}
           onClick={() => {
@@ -19,7 +19,7 @@ function Navbar({ setFiltro }) {
         </li>
         <div className="border-gray-400 border my-2"></div>
         <li
-          className={`text-center w-80 text-white p-2 cursor-pointer rounded-full px-10 ${
+          className={`text-center w-50 text-white p-2 cursor-pointer rounded-full px-10 ${
             filtroActual === false ? "bg-sky-400" : "bg-gray-400 hover:bg-sky-400"
           }`}
           onClick={() => {
@@ -31,7 +31,7 @@ function Navbar({ setFiltro }) {
         </li>
         <div className="border-gray-400 border my-2"></div>
         <li
-          className={`text-center w-80 text-white p-2 cursor-pointer rounded-full px-10 ${
+          className={`text-center w-50 text-white p-2 cursor-pointer rounded-full px-10 ${
             filtroActual === true ? "bg-sky-400" : "bg-gray-400 hover:bg-sky-400"
           }`}
           onClick={() => {

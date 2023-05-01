@@ -8,10 +8,13 @@ import Alerta from "../components/Alerta"
 import Navbar from '../components/Navbar';
 
 const Proyecto = () => {
-  const { obtenerProyecto, proyecto, cargando, handleModalTarea, alerta } = useProyectos()
-  
   const params = useParams()
   const {id} = params
+  const { obtenerProyecto, proyecto, cargando, handleModalTarea, alerta } = useProyectos()
+  
+
+  const { nombre, icono } = proyecto
+  const [filtro, setFiltro] = useState(null)
 
   useEffect(() => {
     obtenerProyecto(id)
@@ -21,10 +24,12 @@ const Proyecto = () => {
   const { msg } = alerta
 
   const handleClick = () => {
-    if(confirm("Deseas eliminar este proyecto?"))
-      eliminarProyecto(proyecto._id)
-    else
-    console.log("no");
+    // if(confirm("Deseas eliminar este proyecto?")){
+    //   eliminarProyecto(proyecto._id)
+    // }else{
+    //   console.log("no");
+    // }
+
   }
 
   const tareasFiltradas = proyecto.tareas?.filter((tarea) => {
@@ -40,7 +45,7 @@ const Proyecto = () => {
   return (
     <>
         <div className="flex justify-between">
-        <h1 className="font-black text-4xl">{proyecto.nombre}</h1>
+        <h1 className="font-black text-4xl">{nombre}</h1>
       </div>
       <div className="flex justify-between mt-20 items-center">
       <button
@@ -54,8 +59,8 @@ const Proyecto = () => {
         Nueva Tarea
       </button>
         <div className='flex items-center gap-4'>
-          <img src={proyecto.icono ? proyecto.icono : ''} alt='icono' className='flex w-10 h-full rounded-md bg-center bg-no-repeat' />
-          <h1 className="font-black text-4xl">{proyecto.nombre}</h1>
+          <img src={icono ? icono : ''} alt='icono' className='flex w-10 h-full rounded-md bg-center bg-no-repeat' />
+          <h1 className="font-black text-4xl">{nombre}</h1>
         </div>
         <div className="gap-2">
         <div className='flex items-center gap-2 text-gray-400 hover:text-black'>
@@ -82,7 +87,7 @@ const Proyecto = () => {
 
       <p className="font-bold text-xl mt-10">Tareas del Proyecto</p>
 
-      {/* <Navbar setFiltro={setFiltro}/> */}
+      <Navbar setFiltro={setFiltro}/>
 
       { msg && <Alerta alerta={alerta} />}
 
@@ -98,8 +103,7 @@ const Proyecto = () => {
           <p className="text-center my-5 p-10">No hay tareas en este proyecto</p>
         }
       </div>
-      <ModalFormularioTarea />
-  
+      <ModalFormularioTarea/>
     </>
     
   )
