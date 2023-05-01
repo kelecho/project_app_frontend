@@ -4,7 +4,7 @@ import useProyectos from "../hooks/useProyectos"
 import ModalEliminarTarea from "./ModalEliminarTarea"
 const Tarea = ({tarea,proyectoId}) => {
 
-  const { handleModalEditarTarea, handleModalEliminarTarea, modalEliminarTarea } = useProyectos()
+  const { handleModalEditarTarea, handleModalEliminarTarea } = useProyectos()
 
   const { descripcion, nombre, prioridad, fechaEntrega, estado, _id} = tarea
 
