@@ -6,15 +6,17 @@ import ModalEliminarTarea from "../components/ModalEliminarTarea"
 import Tarea from "../components/Tarea"
 import Alerta from "../components/Alerta"
 import Navbar from '../components/Navbar';
+import ModalEliminarProyecto from "../components/ModalEliminarProyecto"
 
 const Proyecto = () => {
   const params = useParams()
   const {id} = params
-  const { obtenerProyecto, proyecto, cargando, handleModalTarea, alerta, eliminarProyecto } = useProyectos()
+  const { obtenerProyecto, proyecto, cargando, handleModalTarea, alerta } = useProyectos()
   
 
-  const { nombre, icono } = proyecto
+  const { nombre, icono } = proyecto
   const [filtro, setFiltro] = useState(null)
+  const [eliminarProyeto, setEliminarProyecto ] = useState(false)
 
   useEffect(() => {
     obtenerProyecto(id)
@@ -24,10 +26,12 @@ const Proyecto = () => {
   const { msg } = alerta
 
   const handleClick = () => {
-    if(confirm("Deseas eliminar este proyecto?"))
-      eliminarProyecto(proyecto._id)
-    else
-    console.log("no");
+    // if(confirm("Deseas eliminar este proyecto?")){
+    //   eliminarProyecto(proyecto._id)
+    // }else{
+    //   console.log("no");
+    // }
+
   }
 
   const tareasFiltradas = proyecto.tareas?.filter((tarea) => {
@@ -42,6 +46,9 @@ const Proyecto = () => {
 
   return (
     <>
+        <div className="flex justify-between">
+        <h1 className="font-black text-4xl">{nombre}</h1>
+      </div>
       <div className="flex justify-between mt-20 items-center">
       <button
         onClick={ handleModalTarea }
@@ -70,7 +77,7 @@ const Proyecto = () => {
         <div className='flex items-center gap-2 text-gray-400 hover:text-black'>
             <button
                 className='uppercase font-bold'
-                onClick={handleClick}
+                onClick={()=>setEliminarProyecto(!eliminarProyeto)}
             >Eliminar</button>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -92,14 +99,14 @@ const Proyecto = () => {
           <Tarea 
             key={tarea._id}
             tarea={tarea}
+            proyectoId={id}
           />
          )) : 
           <p className="text-center my-5 p-10">No hay tareas en este proyecto</p>
         }
       </div>
-
-      <ModalFormularioTarea />
-      <ModalEliminarTarea />
+      <ModalFormularioTarea/>
+      <ModalEliminarProyecto proyectoId={id} proyectoEliminar={eliminarProyeto} setEliminarProyecto={setEliminarProyecto}/>
     </>
     
   )

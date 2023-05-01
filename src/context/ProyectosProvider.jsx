@@ -21,25 +21,26 @@ const ProyectosProvider = ({children}) => {
     const navigate = useNavigate();
     const { auth } = useAuth()
 
-    useEffect(() => {
-        const obtenerProyectos = async () => {
-            try {
-                const token = localStorage.getItem('token')
-                if(!token) return
-                
-    
-                const config = {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`
-                    }
+    const obtenerProyectos = async () => {
+        try {
+            const token = localStorage.getItem('token')
+            if(!token) return
+            
+
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
                 }
-                const { data } = await clienteAxios('/proyectos', config)
-                setProyectos(data)
-            } catch (error) {
-                console.log(error)
             }
+            const { data } = await clienteAxios('/proyectos', config)
+            setProyectos(data)
+        } catch (error) {
+            console.log(error)
         }
+    }
+
+    useEffect(() => {
         obtenerProyectos()
     }, [auth])
 
@@ -85,7 +86,7 @@ const ProyectosProvider = ({children}) => {
             setTimeout(() => {
                 setAlerta({})
                 navigate('/proyectos')
-            }, 3000);
+            }, 1000);
         } catch (error) {
             console.log(error)
         }
@@ -114,7 +115,7 @@ const ProyectosProvider = ({children}) => {
             setTimeout(() => {
                 setAlerta({})
                 navigate('/proyectos')
-            }, 3000);
+            }, 1000);
         } catch (error) {
             console.log(error)
         }
@@ -176,7 +177,7 @@ const ProyectosProvider = ({children}) => {
             setTimeout(() => {
                 setAlerta({})
                 navigate('/proyectos')
-            }, 3000);
+            }, 1000);
         } catch (error) {
             console.log(error)
         }
@@ -233,7 +234,7 @@ const ProyectosProvider = ({children}) => {
             }
           }
           const { data } = await clienteAxios.put(`/tareas/${tarea.id}`, tarea, config)
-    
+          console.log(data,'')
           const proyectoActualizado = {...proyecto}
           proyectoActualizado.tareas = proyectoActualizado.tareas.map( tareaState => tareaState._id === data._id ? data : tareaState)
           setProyecto(proyectoActualizado)
@@ -254,7 +255,7 @@ const ProyectosProvider = ({children}) => {
         setModalEliminarTarea(!modalEliminarTarea)
     }
 
-    const eliminarTarea = async (id) => {
+    const eliminarTarea = async (tareaId, proyectoId) => {
     
         try {
             const token = localStorage.getItem('token')
@@ -267,18 +268,17 @@ const ProyectosProvider = ({children}) => {
                 }
             }
             
-            const { data } = await clienteAxios.delete(`/tareas/${id}`, config)
-            
-            const proyectoAtualizado =  tarea.filter(tareaState => tareaState._id !== id)
-            setProyecto(proyectoAtualizado)
+            const { data } = await clienteAxios.delete(`/tareas/${tareaId}`, config)
+
             setModalEliminarTarea(false)
+            obtenerProyecto(proyectoId)
             setAlerta({
               msg: data.msg, error: false
             })
             setTarea({})
             setTimeout(() => {
                 setAlerta({})
-            }, 2000 )
+            }, 1000 )
     
         } catch (error) {
             console.log(error)

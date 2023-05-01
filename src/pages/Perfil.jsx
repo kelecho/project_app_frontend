@@ -19,12 +19,14 @@ const Perfil = () => {
         {/*Tarjeta de perfil*/}
         <div className="flex gap-2 mb-5">
       <Link
-            className='uppercase font-bold ml-60'
+            className='flex uppercase font-bold ml-60'
             to={`/proyectos`}
-          >Cerrar</Link>
+          >Cerrar
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
+          </Link>
+          
           </div>
       <div class="flex flex-col items-center pb-10">
         <img
