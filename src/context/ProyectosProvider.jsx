@@ -255,40 +255,36 @@ const ProyectosProvider = ({children}) => {
         setModalEliminarTarea(!modalEliminarTarea)
     }
 
-    const eliminarTarea = async () => {
+    const eliminarTarea = async (id) => {
     
         try {
             const token = localStorage.getItem('token')
             if(!token) return
-
+    
             const config = {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`
                 }
             }
-
-            const { data } = await clienteAxios.delete(`/tareas/${tareaId}`, config)
-            setAlerta({
-                msg: data.msg,
-                error: false
-            })
-
+            
+            const { data } = await clienteAxios.delete(`/tareas/${id}`, config)
+            
+            const proyectoAtualizado =  tarea.filter(tareaState => tareaState._id !== id)
+            setProyecto(proyectoAtualizado)
             setModalEliminarTarea(false)
-            obtenerProyecto(proyectoId)
-            // SOCKET
-            socket.emit('eliminar tarea', tarea)
-
+            setAlerta({
+              msg: data.msg, error: false
+            })
             setTarea({})
             setTimeout(() => {
                 setAlerta({})
-            }, 3000 )
-
+            }, 2000 )
+    
         } catch (error) {
             console.log(error)
         }
     }
-
     const submitColaborador = async email => {
         
         setCargando(true)

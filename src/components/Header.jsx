@@ -14,7 +14,7 @@ const Header = () => {
     localStorage.removeItem('token')
   }
   return (
-    <header className='flex justify-between px-4 py-5 bg-white border-b fixed w-full'>
+    <header className='flex justify-between px-4 py-5 bg-white border-b w-full'>
         <h2 className='text-4xl text-sky-600 font-black text-center'>
           ProyectosApp
         </h2>
