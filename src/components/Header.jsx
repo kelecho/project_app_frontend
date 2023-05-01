@@ -14,26 +14,19 @@ const Header = () => {
     localStorage.removeItem('token')
   }
   return (
-    <header className='px-4 py-5 bg-white border-b'>
-      <div className='md:flex md:justify-between'>
+    <header className='flex justify-between px-4 py-5 bg-white border-b fixed w-full'>
         <h2 className='text-4xl text-sky-600 font-black text-center'>
           ProyectosApp
         </h2>
-
-        <input 
-          type="search" 
-          placeholder='Buscar'
-          className='rounded-lg lg:w-96 block p-2 border'  
-        />
 
         <div className="flex items-center gap-4">
         <Link to='/perfil' className="font-bold uppercase">
             Perfil
           </Link>
-          <Link
+          {/*<Link
             to="/proyectos"
             className="font-bold uppercase"
-          >Proyectos</Link>
+  >Proyectos</Link>*/}
           <button
             type="button"
             onClick={handleCerrarSesion}
@@ -41,8 +34,6 @@ const Header = () => {
           >
             Cerrar Sesión
           </button>
-        </div>
-
       </div>
     </header>
   )

@@ -5,6 +5,7 @@ import Alerta from './Alerta'
 import { useParams } from 'react-router-dom'
 
 const PRIORIDAD = ['Baja', 'Media', 'Alta']
+const ESTADODETAREA = ['Completo', 'Incompleto']
 
 const ModalFormularioTarea = () => {
 
@@ -13,10 +14,30 @@ const ModalFormularioTarea = () => {
     const [descripcion, setDescripcion] = useState('')
     const [prioridad, setPrioridad] = useState('')
     const [fechaEntrega, setFechaEntrega] = useState('')
+    const [estado, setEstado] = useState()
+
 
     const params = useParams()
 
     const { modalFormularioTarea, handleModalTarea, mostrarAlerta, alerta, submitTarea, tarea } = useProyectos()
+
+    const cambiarNombre = (props) => {
+      if(props==='Completo'){
+        return setEstado('true')
+      }
+      else{
+        return setEstado('false')
+      }
+    }
+
+    const cambiarNombre2 = (props) => {
+      if(props==='true'){
+        return 'Completo'
+      }
+      else if(props==='false'){
+        return 'Incompleto'
+      }
+    }
 
     useEffect(() => {
       if (tarea?._id) {
@@ -25,20 +46,22 @@ const ModalFormularioTarea = () => {
         setDescripcion(tarea.descripcion)
         setFechaEntrega(tarea.fechaEntrega?.split('T')[0])  
         setPrioridad(tarea.prioridad)
+        setEstado(tarea.estado)
         return
       }
       setId('')
       setNombre('')
       setDescripcion('')
       setFechaEntrega('')  
-      setPrioridad('')    
+      setPrioridad('')   
+      setEstado()    
     }, [tarea])
     
 
     const handleSubmit = async (e) => {
       e.preventDefault()
 
-      if([nombre, descripcion, fechaEntrega , prioridad].includes('')){
+      if([nombre, descripcion, fechaEntrega , prioridad, estado].includes('')){
         mostrarAlerta({
           msg: 'Todos los campos son obligatorios',
           error: true
@@ -46,13 +69,14 @@ const ModalFormularioTarea = () => {
         return
       }
 
-      await submitTarea({id, nombre, descripcion, fechaEntrega, prioridad, proyecto: params.id})
+      await submitTarea({id, nombre, descripcion, fechaEntrega, prioridad, estado, proyecto: params.id})
       
       setId('')
       setNombre('')
       setDescripcion('')
       setFechaEntrega('')
       setPrioridad('')
+      setEstado()
     }
 
     const { msg } = alerta
@@ -178,6 +202,26 @@ const ModalFormularioTarea = () => {
                                           ))}
                                         </ select>
                                       </div>
+                                      { id ?
+                                      <div className='mb-5'>
+                                        <label 
+                                          htmlFor='estado'
+                                          className='text-gray-700 uppercase font-bold text-sm'>
+                                          Estado
+                                        </label>
+                                        {/*<p className='text-gray-700 uppercase font-bold text-sm'>{estado}</p>*/}
+                                         <select
+                                          id="estado"
+                                          className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md' 
+                                          value={cambiarNombre2(estado)}
+                                          onChange={ e => cambiarNombre(e.target.value)}
+                                        >
+                                          <option value="">Seleccionar Estado</option>
+                                          {ESTADODETAREA.map( opcion => (
+                                            <option key={opcion}>{opcion}</option>
+                                          ))}
+                                        </ select>
+                                      </div>: '' }
                                       <input 
                                         type="submit"
                                         className='bg-sky-600 hover:bg-sky-700 w-full p-3 text-white uppercase font-bold cursor-pointer transition-colors rounded' 

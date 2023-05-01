@@ -5,9 +5,11 @@ const PreviewProyect = ({proyecto}) => {
 
     const { icono, nombre, _id, cliente, creador} = proyecto;
 
+    const reload = () => {
+          window.reload(true)
+      }
     return (
-        <div className='border-b p-5 flex flex-col md:flex-row justify-between'>
-
+        <div className='bg-white p-4 flex justify-between items-center rounded-lg my-2 shadow'>
             <div className='flex items-center gap-2'>
                 <img src={icono ? icono : ''} alt='icono' className='flex w-7 h-7 rounded-md bg-center bg-no-repeat' />
                 <p className='flex-1'>
@@ -25,7 +27,8 @@ const PreviewProyect = ({proyecto}) => {
 
             <Link
                 to={`${_id}`}
-                className='text-gray-600 hover:text-gray-800 uppercase text-sm font-bold'
+                className='text-gray-600 hover:text-sky-600 uppercase text-sm font-bold'
+                onClick={reload}
             >Ver Proyecto</Link>
         </div>
     )

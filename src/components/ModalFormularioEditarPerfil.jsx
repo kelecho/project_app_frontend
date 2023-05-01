@@ -10,7 +10,7 @@ const ModalFormularioEditarPerfil = () => {
   const [message, setMessage] = useState("");
 
   const navigate = useNavigate();
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage('Actualizando...')
@@ -53,15 +53,24 @@ const ModalFormularioEditarPerfil = () => {
   };
 
   return (
-    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-600 dark:border-gray-600">
+    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow p-5">
       {message}
+      <div className="flex gap-2">
+      <Link
+            className='uppercase font-bold ml-60'
+            to={`/perfil`}
+          >Cerrar</Link>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+          </div>
       <div>
         <form onSubmit={handleSubmit} class="flex-col gap-3 p-5 ">
           <div class="flex flex-col items-center gap-2">
             <div class="mb-6 w-full">
               <label
                 htmlFor="avatar"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                class="block mb-2 text-sm font-medium text-gray-900"
               >
                 Tu avatar
               </label>
@@ -70,14 +79,14 @@ const ModalFormularioEditarPerfil = () => {
                 name="avatar"
                 id="avatar"
                 onChange={(e) => setAvatar(e.target.files[0])}
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                class="bg-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Selecciona algun archivo"
               />
             </div>
             <div class="mb-6 w-full">
               <label
                 htmlFor="nombre"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                class="block mb-2 text-sm font-medium text-gray-900"
               >
                 Nuevo nombre
               </label>
@@ -87,7 +96,7 @@ const ModalFormularioEditarPerfil = () => {
                 id="nombre"
                 onChange={(e) => setNombre(e.target.value)}
                 value={nombre}
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                class="bg-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               />
             </div>
           </div>
@@ -100,7 +109,7 @@ const ModalFormularioEditarPerfil = () => {
             </button>
             <Link
               to={"/perfil"}
-              class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
+              class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200"
             >
               Atras
             </Link>
