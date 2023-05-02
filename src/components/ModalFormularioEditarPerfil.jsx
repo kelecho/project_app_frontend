@@ -53,7 +53,7 @@ const ModalFormularioEditarPerfil = () => {
   };
 
   return (
-    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow p-5">
+    <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow p-5">
       {message}
       <div className="flex gap-2">
       <Link
@@ -67,12 +67,12 @@ const ModalFormularioEditarPerfil = () => {
           
           </div>
       <div>
-        <form onSubmit={handleSubmit} class="flex-col gap-3 p-5 ">
-          <div class="flex flex-col items-center gap-2">
-            <div class="mb-6 w-full">
+        <form onSubmit={handleSubmit} className="flex-col gap-3 p-5 ">
+          <div className="flex flex-col items-center gap-2">
+            <div className="mb-6 w-full">
               <label
                 htmlFor="avatar"
-                class="block mb-2 text-sm font-medium text-gray-900"
+                className="block mb-2 text-sm font-medium text-gray-900"
               >
                 Tu avatar
               </label>
@@ -81,14 +81,14 @@ const ModalFormularioEditarPerfil = () => {
                 name="avatar"
                 id="avatar"
                 onChange={(e) => setAvatar(e.target.files[0])}
-                class="bg-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                className="bg-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Selecciona algun archivo"
               />
             </div>
-            <div class="mb-6 w-full">
+            <div className="mb-6 w-full">
               <label
                 htmlFor="nombre"
-                class="block mb-2 text-sm font-medium text-gray-900"
+                className="block mb-2 text-sm font-medium text-gray-900"
               >
                 Nuevo nombre
               </label>
@@ -98,20 +98,20 @@ const ModalFormularioEditarPerfil = () => {
                 id="nombre"
                 onChange={(e) => setNombre(e.target.value)}
                 value={nombre}
-                class="bg-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                className="bg-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               />
             </div>
           </div>
-          <div class="flex justify-center mt-4 space-x-3 md:mt-6">
+          <div className="flex justify-center mt-4 space-x-3 md:mt-6">
             <button
               type="submit"
-              class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Guardar cambios
             </button>
             <Link
               to={"/perfil"}
-              class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200"
+              className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200"
             >
               Atras
             </Link>
