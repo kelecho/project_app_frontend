@@ -14,6 +14,7 @@ const Tarea = ({tarea,proyectoId}) => {
     <div className="bg-white border-b p-5 flex justify-between items-center rounded-lg my-4">
       <div>
         <div className="lg:flex md:flex gap-4">
+          
           { estado ? (
               <button
                 className="bg-green-400 text-white font-thin py-1 px-4 rounded-full mb-2"
