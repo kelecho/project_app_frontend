@@ -68,12 +68,12 @@ const ModalEliminarProyecto = ({proyectoId, proyectoEliminar = false, setElimina
                                 </div>
                                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                                     <Dialog.Title as="h3" className="text-lg leading-6 font-bold text-gray-900">
-                                        Eliminar Tarea
+                                        Eliminar Proyecto
                                     </Dialog.Title>
                               
                                     <div className='mt-2'>
                                         <p className='text-sm text-gray-500'>
-                                            Una tarea eliminada no se podrá recuperar
+                                            Una proyecto eliminado no se podrá recuperar, tampoco sus tareas
                                         </p>
                                     </div>
 
