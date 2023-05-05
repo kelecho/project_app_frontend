@@ -23,7 +23,8 @@ function App() {
       <AuthProvider>
         <ProyectosProvider>
           <Routes>
-              <Route path="/login" element={<Login />} />
+            <Route path="/" element={<AuthLayout />}>
+            <Route path="/login" element={<Login />} />
               <Route path="/registrar" element={<Registrar />} />
               <Route path="/olvide-password" element={<OlvidePassword />} />
               <Route
@@ -31,8 +32,6 @@ function App() {
                 element={<NuevoPassword />}
               />
               <Route path="/confirmar/:id" element={<ConfirmarCuenta />} />
-            <Route path="/" element={<AuthLayout />}>
-              
             </Route>
 
             <Route path="/proyectos" element={<RutaProtegida />}>
