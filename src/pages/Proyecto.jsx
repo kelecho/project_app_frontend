@@ -35,6 +35,7 @@ const Proyecto = () => {
       return true;
     }
   });
+  console.log(tareasFiltradas)
 
   return (
     <>
@@ -96,10 +97,13 @@ const Proyecto = () => {
             tarea={tarea}
             proyectoId={id}
           />
+          
          )) : 
           <p className="text-center my-5 p-10">No hay tareas en este proyecto</p>
+          
         }
       </div>
+      <ModalEliminarTarea/>
       <ModalFormularioTarea/>
       <ModalEliminarProyecto proyectoId={id} proyectoEliminar={eliminarProyeto} setEliminarProyecto={setEliminarProyecto}/>
     </>

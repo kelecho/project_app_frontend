@@ -9,10 +9,19 @@ const FormularioPremium = () => {
     setLoading(true);
 
     try {
+      const token = localStorage.getItem('token')
+            if (!token) return
+
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            }
       // Hacer una llamada a la API de Stripe para obtener una URL de pago única
       const { data } = await clienteAxios.post("/pagos/checkout", {
         // Aquí puedes pasar información adicional sobre el pago, como el precio o la descripción
-      });
+      },config);
 
       // Redirigir al usuario a la página de pago de Stripe
       window.location.replace(data.url);
