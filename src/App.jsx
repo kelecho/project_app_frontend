@@ -23,7 +23,7 @@ function App() {
       <AuthProvider>
         <ProyectosProvider>
           <Routes>
-              <Route index element={<Login />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/registrar" element={<Registrar />} />
               <Route path="/olvide-password" element={<OlvidePassword />} />
               <Route
