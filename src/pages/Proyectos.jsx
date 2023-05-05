@@ -74,7 +74,13 @@ const Proyectos = () => {
               key={proyecto._id}
               proyecto={proyecto}
             />))
-         : <p className="text-center text-gray-600 uppercase p-5">No hay proyectos</p>}
+         : 
+         <div>
+          <p className="text-center text-lg uppercase font-bold text-sky-500 pt-10">No hay proyectos</p>
+          <img className="w-1/2 h-auto m-auto"
+         src='https://cdn.dribbble.com/users/363634/screenshots/4200296/attachments/960005/cactus-lendit.jpg?compress=1&resize=400x300&vertical=top'/>
+         </div>
+         }
       </ul>
     </>
   )
