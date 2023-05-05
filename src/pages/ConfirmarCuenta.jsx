@@ -39,7 +39,7 @@ const ConfirmarCuenta = () => {
          {alerta.msg || alerta.error ? <Alerta alerta={alerta}/> : '' }
         
            <Link
-            className='block text-center my-5 text-slate-500 uppercase text-sm'
+            className='block text-center bg-sky-700 mb-5 w-full py-3 text-white uppercase font-bold rounded hover:cursor-pointer hover:bg-sky-800 transition-colors'
              onClick={confirmarCuenta}
            >Confirmar cuenta</Link>
         
