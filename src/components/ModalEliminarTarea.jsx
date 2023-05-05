@@ -2,14 +2,11 @@ import { Fragment  } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import useProyectos from '../hooks/useProyectos'
 
-const ModalEliminarTarea = ({proyectoId, tareaId, tareaEliminar=false, setEliminarTarea}) => {
 
-    const { eliminarTarea } = useProyectos()
+const ModalEliminarTarea = () => {
 
-    const handleDelete = () =>{
-        setEliminarTarea(!tareaEliminar)
-        eliminarTarea(tareaId, proyectoId)
-    }
+    const { modalEliminarTarea, handleModalEliminarTarea, eliminarTarea } = useProyectos()
+
 
     return (
         <Transition.Root show={ tareaEliminar } as={Fragment}>
@@ -84,8 +81,9 @@ const ModalEliminarTarea = ({proyectoId, tareaId, tareaEliminar=false, setElimin
                                 <button
                                     type="button"
                                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-                                    onClick={ handleDelete }
-                                >
+                                    onClick={()=>eliminarTarea()}
+                                > 
+
                                     Eliminar
                                 </button>
                                 <button

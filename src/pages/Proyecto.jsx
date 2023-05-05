@@ -35,6 +35,7 @@ const Proyecto = () => {
       return true;
     }
   });
+  console.log(tareasFiltradas)
 
   return (
     <>
@@ -100,14 +101,15 @@ const Proyecto = () => {
             tarea={tarea}
             proyectoId={id}
           />
+          
          )) : 
-         <div>
-          <p className="text-center text-lg uppercase font-bold text-sky-500 pt-10">No hay tareas</p>
-         <img className="w-1/2 h-auto m-auto"
-         src='https://cdn.dribbble.com/users/363634/screenshots/4200296/attachments/960005/cactus-lendit.jpg?compress=1&resize=400x300&vertical=top'/>
-        </div>
+
+          <p className="text-center my-5 p-10">No hay tareas en este proyecto</p>
+          
+
         }
       </div>
+      <ModalEliminarTarea/>
       <ModalFormularioTarea/>
       <ModalEliminarProyecto proyectoId={id} proyectoEliminar={eliminarProyeto} setEliminarProyecto={setEliminarProyecto}/>
     </>

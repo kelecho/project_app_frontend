@@ -1,17 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useProyectos from "../hooks/useProyectos"
-import useAuth from "../hooks/useAuth";
 
 const PagoExitoso = () => {
   const { cambiarPremium } = useProyectos()
-  const{auth}  = useAuth()
-  useEffect(
-    () => {
-      const data = cambiarPremium(auth._id)
-      console.log(data)
-    }, []
-  )
+  const [data, setData] = useState('')
 
-  return <h1>Pago exitoso, ya estás suscripto a la versión premium de ProyectosApp</h1>
+  const actualizarPremium = async()=>{
+    const data = await cambiarPremium()
+    setData(data.msg)
+  }
+
+  useEffect(()=>{
+    actualizarPremium()
+  },[])
+  return (
+  <>
+    <h1>{data ? 'Pago exitoso, ya estás suscripto a la versión premium de ProyectosApp' : ''}</h1>
+    <h3>{data ? data : ''}</h3>
+  </>
+  
+  )
 }
 export default PagoExitoso
