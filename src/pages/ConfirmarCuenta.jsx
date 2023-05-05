@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams, Link, useNavigate } from "react-router-dom"
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom"
 import clienteAxios from '../config/clienteAxios'
 import Alerta from "../components/Alerta"
 
@@ -9,7 +9,10 @@ const ConfirmarCuenta = () => {
   const params = useParams();
   const navigate = useNavigate()
   const { id } = params;
-  
+  const location = useLocation()
+  console.log({location})
+  console.log({id})
+
   const confirmarCuenta = async () => {
     try {
       const { data } = await clienteAxios(`/usuarios/confirmar/${id}`);
